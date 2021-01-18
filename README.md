@@ -26,7 +26,7 @@ To input a new transaction you can input a string (json format) in any terminal 
 
 When you input a new transaction, every node in the network start creating a new Block & the first node to find the correct Hash for the Block will broadcast his updated Blockchain to the network. Effectively updating the Blockchain everywhere.
 
-###Tests
+### Tests
 
 Most of the code is tested ! => 
 ```go test -v ./Tests``` in the root directory
