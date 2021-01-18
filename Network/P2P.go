@@ -76,7 +76,7 @@ func peer2peerDiscovery(node host.Host, ctx context.Context) {
 		go func() {
 			defer wg.Done()
 			if err := node.Connect(ctx, *peerInfo); err != nil {
-				logger.Warn(err)
+				logger.Debugf("Node Connect failed : %v",err)
 			} else {
 				logger.Info("Connection established with bootstrap node : ", *peerInfo)
 			}
@@ -101,7 +101,7 @@ func peer2peerDiscovery(node host.Host, ctx context.Context) {
 		logger.Debug("Connecting to peer : ", p)
 		stream, err := node.NewStream(ctx, p.ID, protocol.ID(os.Getenv("PROTOCOL_ID")))
 		if err != nil {
-			logger.Warn("Connection failed : ", err)
+			logger.Debug("Connection failed : ", err)
 			continue
 		}
 

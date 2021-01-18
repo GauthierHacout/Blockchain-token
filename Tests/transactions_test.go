@@ -8,8 +8,8 @@ import (
 
 func TestJsonToTransaction(t *testing.T) {
 	//GIVEN
-	input := `{"from":"A","to":"B","amount":3}`
-	expected := Token.Transaction{From:"A", To:"B", Amount:3}
+	input := `{"from":"Alice","to":"B","amount":3}`
+	expected := Token.Transaction{From:"Alice", To:"B", Amount:3}
 	//WHEN
 	result, _ := Token.JsonToTransaction(input)
 	//THEN

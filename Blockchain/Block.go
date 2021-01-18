@@ -2,6 +2,7 @@ package Blockchain
 
 import (
 	"Blockchain-token/Token"
+	"log"
 	"strconv"
 "sync"
 "time"
@@ -45,11 +46,13 @@ func GenerateBlock(oldBlock Block, transaction Token.Transaction) Block {
 		PreviousHash: oldBlock.Hash,
 		Difficulty:   Difficulty,
 	}
+	log.Println("Generating a new Block")
 
 	// While loop until the Hash of the Block is valid
 	for i:=0; ; i++ {
 		newBlock.Nonce = strconv.Itoa(i) // We modify Nonce to change the calculated Hash
 		calculatedHash := CalculateBlockHash(newBlock)
+		log.Println("Calculating Hash : ", calculatedHash)
 		if !IsHashValid(calculatedHash, newBlock.Difficulty) {
 			continue
 		} else {

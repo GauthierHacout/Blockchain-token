@@ -3,9 +3,12 @@ package main
 import (
 	"Blockchain-token/Blockchain"
 	"Blockchain-token/Network"
+	"Blockchain-token/Token"
 	"flag"
+	"fmt"
 	"github.com/joho/godotenv"
 	"log"
+	"time"
 )
 
 func main() {
@@ -26,6 +29,18 @@ func main() {
 	Blckch := new(Blockchain.Blockchain)
 	Blckch.Initiate()
 	Blockchain.Blckch = *Blckch
+
+	// Random Values for Initial Balances
+	Token.GlbBalances = map[string]int{"Alice": 50}
+
+	go func() {
+		for {
+			time.Sleep(time.Second*30)
+			fmt.Println("\n\n\n\n-------MY BLOCKCHAIN-----------", Blockchain.Blckch)
+			fmt.Println("-----------MY BALANCE------------", Token.GlbBalances)
+			fmt.Println("-----END--------\n\n\n")
+		}
+	}()
 
 	// Start the peer 2 peer network
 	Network.Start(*listenFlag)
